@@ -68,6 +68,7 @@ function TodoMain() {
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
     const nextId = useRef(3)
+    const inputFocus = useRef()
 
     const addTodoList = () => {
         if(!title || !desc) return;
@@ -80,6 +81,10 @@ function TodoMain() {
             })
         )
         nextId.current += 1;
+        setTitle('');
+        setDesc('');
+        inputFocus.current.focus()
+        
     }
 
     // 컴포넌트 -> 액션 creator -> 리듀서
@@ -99,16 +104,17 @@ function TodoMain() {
                 <div>My Todo List</div>
                 <div>React</div>
             </HeaderContainer>
-            <FormContainer onClick={addTodoList}>
+            <FormContainer>
                 <InputContainer>
                     <label>제목</label>
-                    <SmallInput type='text' name="title" 
-                                onChange={(e) => setTitle(e.target.value)}/>
+                    <SmallInput type='text' name="title" value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                ref={inputFocus}/>
                     <label>내용</label>
-                    <SmallInput type='text' name="body" 
+                    <SmallInput type='text' name="body" value={desc}
                                 onChange={(e) => setDesc(e.target.value)}/>
                 </InputContainer>
-                <Button>추가하기</Button>
+                <Button onClick={addTodoList}>추가하기</Button>
             </FormContainer>
             <ListContainer>
                 <h1>Working.. 🔥</h1>

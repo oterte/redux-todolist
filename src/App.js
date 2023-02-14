@@ -1,6 +1,8 @@
+
 import styled from 'styled-components';
 import './App.css';
 import TodoMain from './components/TodoMain';
+import Router from './shared/Router';
 
 const Layout = styled.div`
     max-width: 1200px;
@@ -15,7 +17,7 @@ function App() {
   return (
     <>
       <Layout>
-        <TodoMain/>
+        <Router />
       </Layout>
     </>
   );
