@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import Button from './Button'
 
 const TodoContainer = styled.div`
     border: 3px solid black;
@@ -15,29 +15,29 @@ const TodoContainer = styled.div`
 const P = styled.p`
     color:slategray;
 `
-const DeleteButton = styled.button`
-    border-radius: 10px;
-    border: none;
+// const DeleteButton = styled.button`
+//     border-radius: 10px;
+//     border: none;
 
-    padding: 5px;
-    width: 100px;
-    height: 45px;
+//     padding: 5px;
+//     width: 100px;
+//     height: 35px;
 
-    font-weight: bold;
-    background-color: green;
-    color: white;
-    margin-right: 10px;
-    &:hover{
-        cursor: pointer;
-    }
-`
+//     font-weight: bold;
+//     background-color: green;
+//     color: white;
+//     margin-right: 10px;
+//     &:hover{
+//         cursor: pointer;
+//     }
+// `
 const ComplteButton = styled.button`
     border-radius: 10px;
     border: none;
 
     padding: 5px;
     width: 100px;
-    height: 45px;
+    height: 35px;
     
     font-weight: bold;
     &:hover{
@@ -69,17 +69,28 @@ export default function TodoCard({ todo, onDeleteHandler, onCompleteHandler }) {
             
             <h2>{todo.title}</h2>
             <P>{todo.desc}</P>
-            <DeleteButton onClick={() => {onDeleteHandler(todo.id)} }>
-                삭 제
-            </DeleteButton>
-
-            <ComplteButton
-                        onClick={() => {onCompleteHandler(todo.id)}}>
-                {todo.isDone ? "취소" : "완료"}
-            </ComplteButton>
-            <DetailButton>
+            <Button 
+                width={100}
+                height={35}
+                padding={5}
+                color="white"
+                // width, height, padding, color
+                desc="삭제"
+                onClick={() => {onDeleteHandler(todo.id)} }>
+                
+            </Button>
+            
+            <Button
+                    width={100}
+                    height={35}
+                    padding={5}
+                    color="red"
+                    desc={todo.isDone ? "취소" : "완료"}
+                    onClick={() => {onCompleteHandler(todo.id)}}>
+                
+            </Button>
                 <Link to={`/todolist/${todo.id}`}>상세보기</Link>
-            </DetailButton>
+            
         </TodoContainer>
     )
 }

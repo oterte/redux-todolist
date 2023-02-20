@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import TodoCard from './TodoCard'
 import { submit_todo, delete_todo, complete_todo } from '../modules/todolist'
 import useInput from '../hooks/useInput'
-
+import Button from './Button'
 const HeaderContainer = styled.div`
         display: flex;
         justify-content: space-between;
@@ -36,17 +36,17 @@ const SmallInput = styled.input`
     border: none;
     border-radius: 10px;
 `
-const Button = styled.button`
-    border: none;
-    border-radius: 10px;
-    background-color: black;
+// const Button = styled.button`
+//     border: none;
+//     border-radius: 10px;
+//     background-color: black;
 
-    padding: 10px;
+//     padding: 10px;
 
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-`
+//     font-size: 18px;
+//     font-weight: bold;
+//     color: white;
+// `
 const ListContainer = styled.div`
         padding: 20px;
     `
@@ -80,6 +80,7 @@ function TodoMain() {
 
 
     const addTodoList = () => {
+        // 제목과 내용 중 하나라도 비어있으면 추가 안됨
         if(!title || !desc) return;
         dispatch(
             submit_todo({
@@ -122,7 +123,13 @@ function TodoMain() {
                     <SmallInput type='text' name="body" value={desc}
                                 onChange={onChangeDesc}/>
                 </InputContainer>
-                <Button onClick={addTodoList}>추가하기</Button>
+                <Button 
+                    width={100}
+                    height={35}
+                    padding={10}
+                    desc="추가하기"
+                    color="white"
+                    add={addTodoList}></Button>
             </FormContainer>
             <ListContainer>
                 <h1>Working.. 🔥</h1>
