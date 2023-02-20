@@ -67,9 +67,8 @@ const todolist = (state = initialState, action) => {
         case onSubmit:
             const {id, title, desc, isDone} = action.payload;
             const oldArr = [...state.todos];
-            const newData = {id, title, desc, isDone};
+            const newData = {id, title, desc, isDone}; // payload로 들어온 값
             const newArr = [...oldArr, newData];
-
             return {
                 todos: newArr
             }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import TodoCard from './TodoCard'
 import { submit_todo, delete_todo, complete_todo } from '../modules/todolist'
+import useInput from '../hooks/useInput'
 
 const HeaderContainer = styled.div`
         display: flex;
@@ -65,10 +66,18 @@ function TodoMain() {
     })
 
     
-    const [title, setTitle] = useState('')
-    const [desc, setDesc] = useState('')
+   
+
+    // 커스텀 훅을 이용해 인풋값 핸들링
+    const [title, onChangeTitle] = useInput();
+    const [desc, onChangeDesc] = useInput();
+
+
+    
     const nextId = useRef(3)
     const inputFocus = useRef()
+
+
 
     const addTodoList = () => {
         if(!title || !desc) return;
@@ -81,8 +90,7 @@ function TodoMain() {
             })
         )
         nextId.current += 1;
-        setTitle('');
-        setDesc('');
+        
         inputFocus.current.focus()
         
     }
@@ -108,11 +116,11 @@ function TodoMain() {
                 <InputContainer>
                     <label>제목</label>
                     <SmallInput type='text' name="title" value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                onChange={onChangeTitle}
                                 ref={inputFocus}/>
                     <label>내용</label>
                     <SmallInput type='text' name="body" value={desc}
-                                onChange={(e) => setDesc(e.target.value)}/>
+                                onChange={onChangeDesc}/>
                 </InputContainer>
                 <Button onClick={addTodoList}>추가하기</Button>
             </FormContainer>

@@ -63,15 +63,7 @@ const DetailButton = styled.button`
 `
 export default function TodoCard({ todo, onDeleteHandler, onCompleteHandler }) {
 
-    const dispatch = useDispatch();
-    const data = useSelector((state) => {
-        return state.todolist;
-    })
-    
-// {todo.isDone ? "취 소" : "완 료"}
-// onClick={() => onDeleteHandler(todo.id)}
-// onClick={() => onCompleteHandler(todo.id)}
-
+ 
     return (
         <TodoContainer>
             
