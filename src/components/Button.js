@@ -1,23 +1,7 @@
 import React from 'react'
 import styled  from 'styled-components'
 
-// border-radius: 10px;
-//     border: none;
 
-//     padding: 5px;
-//     width: 100px;
-//     height: 35px;
-
-//     font-weight: bold;
-// border: none;
-// border-radius: 10px;
-// background-color: black;
-
-// padding: 10px;
-
-// font-size: 18px;
-// font-weight: bold;
-// color: white;
 const StyledButton = styled.button`
     width: ${(props) => props.width + 'px'};
     height: ${(props) => props.height + 'px'};
@@ -33,12 +17,14 @@ const StyledButton = styled.button`
 `
 
 
-function Button({width, height, padding, color, desc, add }) {
+function Button({width, height, padding, color, desc, handler }) {
+  
   return (
     <StyledButton
         width={width}
         height={height}
         padding={padding}
+        onClick={handler}
         
         color={color}
     >

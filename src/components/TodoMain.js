@@ -36,17 +36,7 @@ const SmallInput = styled.input`
     border: none;
     border-radius: 10px;
 `
-// const Button = styled.button`
-//     border: none;
-//     border-radius: 10px;
-//     background-color: black;
 
-//     padding: 10px;
-
-//     font-size: 18px;
-//     font-weight: bold;
-//     color: white;
-// `
 const ListContainer = styled.div`
         padding: 20px;
     `
@@ -69,8 +59,8 @@ function TodoMain() {
    
 
     // 커스텀 훅을 이용해 인풋값 핸들링
-    const [title, onChangeTitle] = useInput();
-    const [desc, onChangeDesc] = useInput();
+    const [title, onChangeTitle, resetTitle] = useInput();
+    const [desc, onChangeDesc, resetDesc] = useInput();
 
 
     
@@ -91,7 +81,8 @@ function TodoMain() {
             })
         )
         nextId.current += 1;
-        
+        resetTitle();
+        resetDesc();
         inputFocus.current.focus()
         
     }
@@ -129,7 +120,7 @@ function TodoMain() {
                     padding={10}
                     desc="추가하기"
                     color="white"
-                    add={addTodoList}></Button>
+                    handler={addTodoList}></Button>
             </FormContainer>
             <ListContainer>
                 <h1>Working.. 🔥</h1>
