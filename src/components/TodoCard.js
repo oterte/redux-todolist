@@ -29,7 +29,7 @@ export default function TodoCard({ todo, onDeleteHandler, onCompleteHandler }) {
                 height={35}
                 padding={5}
                 color="white"
-                // width, height, padding, color
+                bgColor="green"
                 desc="삭제"
                 
                 handler={() => {onDeleteHandler(todo.id)} }>
@@ -40,7 +40,8 @@ export default function TodoCard({ todo, onDeleteHandler, onCompleteHandler }) {
                     width={100}
                     height={35}
                     padding={5}
-                    color="red"
+                    bgColor="white"
+                    color="black"
                     desc={todo.isDone ? "취소" : "완료"}
                     handler={() => {onCompleteHandler(todo.id)}}>
                 

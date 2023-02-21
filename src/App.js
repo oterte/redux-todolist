@@ -1,7 +1,6 @@
 
+import { QueryClient, QueryClientProvider } from 'react-query';
 import styled from 'styled-components';
-import './App.css';
-import TodoMain from './components/TodoMain';
 import Router from './shared/Router';
 
 const Layout = styled.div`
@@ -12,14 +11,15 @@ const Layout = styled.div`
 
 function App() {
   
+  const queryClient = new QueryClient()
 
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Layout>
         <Router />
       </Layout>
-    </>
+    </QueryClientProvider>
   );
 }
 

@@ -6,18 +6,23 @@ const StyledButton = styled.button`
     width: ${(props) => props.width + 'px'};
     height: ${(props) => props.height + 'px'};
     padding: ${(props) => props.padding + 'px'};
-    background-color: black;
+    background-color: ${(props) => props.bgColor};
     color: ${(props) => props.color};
-    border: none;
+    border: 1px solid black;
     border-radius: 10px;
     font-weight: bold;
     margin-right: 10px;
-    
+    &:hover{
+      cursor: pointer;
+    }
+    &:active{
+      background-color: grey;
+    }
 
 `
 
 
-function Button({width, height, padding, color, desc, handler }) {
+function Button({width, height, padding, color, desc, handler,bgColor }) {
   
   return (
     <StyledButton
@@ -25,7 +30,7 @@ function Button({width, height, padding, color, desc, handler }) {
         height={height}
         padding={padding}
         onClick={handler}
-        
+        bgColor={bgColor}
         color={color}
     >
       {desc}

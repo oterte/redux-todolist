@@ -5,6 +5,8 @@ import TodoCard from './TodoCard'
 import { submit_todo, delete_todo, complete_todo } from '../modules/todolist'
 import useInput from '../hooks/useInput'
 import Button from './Button'
+import { useQuery, useQueryClient } from 'react-query'
+import { getTodos } from '../api/todoApi'
 const HeaderContainer = styled.div`
         display: flex;
         justify-content: space-between;
@@ -50,11 +52,17 @@ const ListWrapper = styled.div`
     `
 
 function TodoMain() {
-    const dispatch = useDispatch();
-    const data = useSelector((state) => {
-        return state.todolist;
-    })
 
+    const queryClient = useQueryClient()
+    const {isLoading, isError, data} = useQuery(["todos"], getTodos)
+    console.log(data)
+
+    
+    const dispatch = useDispatch();
+    // const data = useSelector((state) => {
+    //     return state.todolist;
+    // })
+    
     
    
 
@@ -96,7 +104,13 @@ function TodoMain() {
     const complteTodoList = id => {
         dispatch(complete_todo({id}))
     }
-
+    if(isLoading){
+        return "Loading..."
+    }
+    if(isError){
+        return "error..."
+    };
+    
     return (
 
         <>
@@ -119,13 +133,14 @@ function TodoMain() {
                     height={35}
                     padding={10}
                     desc="추가하기"
+                    bgColor="black"
                     color="white"
                     handler={addTodoList}></Button>
             </FormContainer>
             <ListContainer>
                 <h1>Working.. 🔥</h1>
                 <ListWrapper>
-                    {data.todos.map((item)=> {
+                    {data.map((item)=> {
                         if(item.isDone === false){
                             return <TodoCard
                                         todo={item} 
@@ -137,7 +152,7 @@ function TodoMain() {
                 </ListWrapper>
                 <h1>Done..! 🎉</h1>
                 <ListWrapper>
-                    {data.todos.map((item) => {
+                    {data.map((item) => {
                         if(item.isDone){
                             return <TodoCard
                                         todo={item} 
