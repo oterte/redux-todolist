@@ -1,18 +1,17 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import {  useSelector } from 'react-redux'
+import { useQuery } from 'react-query'
+import { getTodos } from '../api/todoApi'
 
 export default function SingleTodo() {
-    
-
+      // 쿼리로 데이터 불러와야함
+      const { data } = useQuery(["todos"], getTodos)
 
     const params = useParams()
-    const data = useSelector((state) => {
-        return state.todolist;
-    })
+    
     // console.log(data)
-    const todo = data.todos.find((element) => String(element.id) === params.id)
+    const todo = data.find((element) => String(element.id) === params.id)
     // console.log(todo)
   return (
     <div>

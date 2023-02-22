@@ -27,9 +27,9 @@ const Dim = styled.div`
 `
 
 const Container = styled.div`
-    max-width: 456px;
+    width: 800px;
     position: relative;
-    width: 100%;
+    width: 400px;
 `
 
 
@@ -52,4 +52,4 @@ function Modal({ children, isOpen, onClose, selector }) {
     )
 }
 
-export default Modal
+export default Modal;

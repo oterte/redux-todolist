@@ -22,7 +22,7 @@ const StyledButton = styled.button`
 `
 
 
-function Button({width, height, padding, color, desc, handler,bgColor }) {
+function Button({width, height, padding, color, desc, handler,bgColor, type }) {
   
   return (
     <StyledButton
@@ -32,6 +32,7 @@ function Button({width, height, padding, color, desc, handler,bgColor }) {
         onClick={handler}
         bgColor={bgColor}
         color={color}
+        type={type}
     >
       {desc}
     </StyledButton>
