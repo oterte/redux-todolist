@@ -28,8 +28,6 @@ export const deleteTodo = async (id) => {
 // todo 토글
 
 export const toggleTodo = async ({id, toggleDone}) => {
-    console.log(id)
-    console.log(toggleDone)
     await axios.patch(`${process.env.REACT_APP_SERVER_URL}/todos/${id}`,{
         isDone : toggleDone === false ? !toggleDone : !toggleDone
     })
@@ -39,11 +37,8 @@ export const toggleTodo = async ({id, toggleDone}) => {
 // ? {...item, isDone : !item.isDone}
 // : item)
 
-// 할일내용 수정
-// 아직 수정중, 덜만든곳
+// todo 수정
 export const updateTodoDesc = async ({id, changedesc}) => {
-    console.log(id)
-    console.log(changedesc)
     await axios.patch(`${process.env.REACT_APP_SERVER_URL}/todos/${id}`, {
         desc : changedesc
     })

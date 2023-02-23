@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+
 import styled from 'styled-components'
 import TodoCard from './TodoCard'
-import { submit_todo, delete_todo, complete_todo } from '../modules/todolist'
+
 import useInput from '../hooks/useInput'
 import Button from './Button'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
@@ -119,8 +119,6 @@ function TodoMain() {
        
         // 리액트 쿼리를 이용한 addTodo 부분
         addmutation.mutate({
-            
-            
             title,
             desc,
             isDone:false

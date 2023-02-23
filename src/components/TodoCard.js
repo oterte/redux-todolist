@@ -60,12 +60,15 @@ export default function TodoCard({ todo, onDeleteHandler, onCompleteHandler }) {
     })
 
     const changeTodoList = (e,id=todo.id) => {
-        if (!changedesc) return;
+        e.preventDefault();
+        if (!changedesc) {
+            alert('할 일을 입력해주세요.')
+            return   
+        }
         // todo.desc = content
         // console.log("id :" , id, "바뀐 투두 :" , todo.desc)
         // changemutation.mutate({id, content})
         // resetDesc()
-        e.preventDefault();
        
         changemutation.mutate({id, changedesc})
         resetDesc()
