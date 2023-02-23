@@ -47,7 +47,7 @@ export default function TodoCard({ todo, onDeleteHandler, onCompleteHandler }) {
         setIsOpen(false)
     }
     const queryClient = useQueryClient()
-    const { isLoading, isError, data } = useQuery(["todos"], getTodos)
+    
 
     
     const [changedesc, onChangeDesc, resetDesc] = useInput();
@@ -60,14 +60,13 @@ export default function TodoCard({ todo, onDeleteHandler, onCompleteHandler }) {
     })
 
     const changeTodoList = (e,id=todo.id) => {
-         
+        if (!changedesc) return;
         // todo.desc = content
         // console.log("id :" , id, "바뀐 투두 :" , todo.desc)
         // changemutation.mutate({id, content})
         // resetDesc()
         e.preventDefault();
-        console.log(id)
-        console.log(changedesc)
+       
         changemutation.mutate({id, changedesc})
         resetDesc()
         
