@@ -105,8 +105,6 @@ function TodoMain() {
         e.preventDefault();
         // 제목과 내용 중 하나라도 비어있으면 추가 안됨
         if (!title || !desc) return;
-
-        console.log(desc)
         // 기존 리덕스 이용한 addTodo 부분
         // dispatch(
         //     submit_todo({
